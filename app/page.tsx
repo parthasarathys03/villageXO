@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Wheat, Beef, CookingPot, Palette, ArrowRight, Star, Sparkles, Heart } from "lucide-react";
+import { Wheat, Zap, CookingPot, Palette, ArrowRight, Star, Sparkles, Heart, Bike } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,35 +15,62 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
+type ExperienceCard = {
+  icon: React.ComponentType<{ className?: string }>;
+  id: string;
+  title: string;
+  description: string;
+  seasonal: boolean;
+  image: string;
+  imageAlt: string;
+};
+
 export default function Home() {
-  const valueCards = [
+  const experienceCards: ExperienceCard[] = [
     {
       icon: Wheat,
+      id: "farming",
       title: "Farming Experience",
       description: "Work barefoot in real paddy fields. Transplant rice saplings, understand soil and water flow.",
       seasonal: true,
-      gradient: "from-paddy-green/20 to-golden-harvest/20",
+      image: "https://images.pexels.com/photos/7415326/pexels-photo-7415326.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageAlt: "Farmer planting rice in lush green field",
     },
     {
-      icon: Beef,
+      icon: Zap,
+      id: "cattle",
       title: "Cattle Work",
       description: "Feed cows and calves, clean cattle spaces, learn traditional care as family members.",
       seasonal: false,
-      gradient: "from-earthy-brown/20 to-clay-terracotta/20",
+      image: "https://images.pexels.com/photos/35545895/pexels-photo-35545895.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageAlt: "Senior Indian man standing with cow in rural courtyard",
     },
     {
       icon: CookingPot,
+      id: "cooking",
       title: "Traditional Cooking",
       description: "Cook on wood fire with clay vessels. Prepare authentic village meals together.",
       seasonal: false,
-      gradient: "from-clay-terracotta/20 to-golden-harvest/20",
+      image: "https://images.pexels.com/photos/14596422/pexels-photo-14596422.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageAlt: "Woman cooking on traditional clay stove",
     },
     {
       icon: Palette,
+      id: "culture",
       title: "Cultural Crafts",
       description: "Create kolam art, weave palm leaves, or try folk instruments. Keep what you make.",
       seasonal: false,
-      gradient: "from-golden-harvest/20 to-paddy-green/20",
+      image: "https://images.pexels.com/photos/32054494/pexels-photo-32054494.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageAlt: "Villagers crafting in rural setting",
+    },
+    {
+      icon: Bike,
+      id: "mobility",
+      title: "Village Mobility",
+      description: "Explore the village by walking or cycling, following the natural rhythm of village life.",
+      seasonal: false,
+      image: "https://images.pexels.com/photos/258385/pexels-photo-258385.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageAlt: "Cyclist riding through peaceful village road",
     },
   ];
 
@@ -185,64 +212,147 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Value Cards */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-background">
+      {/* What You Experience - Attractive Cards */}
+      <section className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-warm-cream via-background to-warm-cream/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-earthy-brown mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block mb-4"
+            >
+              <Badge className="bg-clay-terracotta/10 text-clay-terracotta border-clay-terracotta/30 px-4 py-2 text-sm">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Authentic Experiences
+              </Badge>
+            </motion.div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-earthy-brown mb-4 sm:mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               What You Experience
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed">
               Real participation in village life. Each activity depends on season and availability.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
-            {valueCards.map((card, index) => {
+          {/* Experience Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {experienceCards.map((card, index) => {
               const IconComponent = card.icon;
               return (
                 <motion.div
-                  key={index}
-                  className="flex"
-                  initial={{ opacity: 0, y: 20 }}
+                  key={card.id}
+                  className="group"
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
                 >
-                  <Card className={`border-2 hover-lift w-full flex flex-col bg-gradient-to-br ${card.gradient} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl hover:border-primary/30 group`}>
-                    <CardHeader className="pb-3 sm:pb-4 flex-none">
-                      <div className="mb-3 sm:mb-4 flex items-center justify-between">
+                  <Link href={`/experience#${card.id}`} className="block h-full">
+                    <div className="experience-card relative h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-border/50 transition-all duration-500 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2">
+                      {/* Image Section - 50% */}
+                      <div className="relative h-48 sm:h-56 overflow-hidden">
+                        <motion.img
+                          src={card.image}
+                          alt={card.imageAlt}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                        
+                        {/* Floating Icon */}
                         <motion.div
-                          className="p-2.5 sm:p-3 rounded-xl bg-primary/20 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
+                          className="absolute top-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-sm shadow-lg"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+                          <IconComponent className="h-6 w-6 text-primary" />
                         </motion.div>
+                        
+                        {/* Seasonal Badge */}
                         {card.seasonal && (
-                          <Badge variant="outline" className="text-xs border-primary/30 text-primary/80">
-                            Seasonal
-                          </Badge>
+                          <motion.div
+                            className="absolute top-4 right-4"
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                          >
+                            <Badge className="bg-golden-harvest text-deep-earth font-semibold shadow-lg">
+                              Seasonal
+                            </Badge>
+                          </motion.div>
                         )}
+                        
+                        {/* Title Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4">
+                          <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                            {card.title}
+                          </h3>
+                        </div>
                       </div>
-                      <CardTitle className="text-lg sm:text-xl font-semibold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
-                        {card.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <CardDescription className="text-sm sm:text-base leading-relaxed text-foreground/80">
-                        {card.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
+                      
+                      {/* Content Section - 30% */}
+                      <div className="p-5 sm:p-6">
+                        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed line-clamp-3">
+                          {card.description}
+                        </p>
+                      </div>
+                      
+                      {/* Learn More Button - 10% */}
+                      <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-primary group-hover:text-clay-terracotta transition-colors duration-300 flex items-center">
+                            Learn More
+                            <motion.span
+                              className="ml-2 inline-block"
+                              initial={{ x: 0 }}
+                              whileHover={{ x: 5 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                            </motion.span>
+                          </span>
+                          
+                          {/* Decorative Element */}
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                            <div className="w-2 h-2 rounded-full bg-primary group-hover:scale-150 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div className="absolute inset-0 rounded-2xl ring-2 ring-primary/20 ring-inset" />
+                      </div>
+                    </div>
+                  </Link>
                 </motion.div>
               );
             })}
           </div>
+
+          {/* View All Experiences Button */}
+          <motion.div
+            className="text-center mt-12 sm:mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Button asChild size="lg" className="bg-clay-terracotta hover:bg-clay-terracotta/90 text-white font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <Link href="/experience" className="flex items-center gap-2">
+                Explore All Experiences
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -368,6 +478,223 @@ export default function Home() {
             <Button asChild variant="outline" size="lg" className="font-bold">
               <Link href="/reviews">Read More Reviews</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* How VillageXO Is Different */}
+      <section className="py-16 sm:py-24 bg-accent/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-earthy-brown mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+              How VillageXO Is Different
+            </h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+              VillageXO is not designed as a demonstration space. It takes place inside a living village where daily work continues whether guests arrive or not.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-earthy-brown mb-6 flex items-center" style={{ fontFamily: 'var(--font-heading)' }}>
+                <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                No Performance Environment
+              </h3>
+              <p className="text-foreground/80 mb-4">
+                There is:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mb-6">
+                <li>No stage</li>
+                <li>No pre-arranged show</li>
+                <li>No scripted cultural display</li>
+                <li>No "activity zones" prepared only for visitors</li>
+              </ul>
+              <p className="text-foreground/80">
+                Farm work happens because the season demands it.
+                Cooking happens because families eat daily.
+                Crafts happen because hands still practice them.
+                Guests participate in what is already happening.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-earthy-brown mb-6 flex items-center" style={{ fontFamily: 'var(--font-heading)' }}>
+                <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                No Fixed Activity Checklist
+              </h3>
+              <p className="text-foreground/80 mb-4">
+                Many rural tours offer:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mb-6">
+                <li>Pre-planned demonstrations</li>
+                <li>Guaranteed craft lists</li>
+                <li>Scheduled performances</li>
+              </ul>
+              <p className="text-foreground/80">
+                VillageXO does not promise specific tasks.
+                Activities depend on:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mt-2">
+                <li>Agricultural season</li>
+                <li>Weather</li>
+                <li>Host availability</li>
+                <li>Natural village rhythm</li>
+              </ul>
+              <p className="text-foreground/80 mt-4">
+                This means each visit may differ.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-earthy-brown mb-6 flex items-center" style={{ fontFamily: 'var(--font-heading)' }}>
+                <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                No Observer-Only Model
+              </h3>
+              <p className="text-foreground/80 mb-4">
+                In many tours, guests:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mb-6">
+                <li>Watch from the side</li>
+                <li>Take photos</li>
+                <li>Listen to explanations</li>
+                <li>Leave unchanged</li>
+              </ul>
+              <p className="text-foreground/80">
+                At VillageXO:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mt-2">
+                <li>You work with your hands.</li>
+                <li>You cook with families.</li>
+                <li>You create something yourself.</li>
+              </ul>
+              <p className="text-foreground/80 mt-4">
+                Participation is central.
+                Observation is secondary.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-earthy-brown mb-6 flex items-center" style={{ fontFamily: 'var(--font-heading)' }}>
+                <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">4</span>
+                No Resort Framing
+              </h3>
+              <p className="text-foreground/80 mb-4">
+                VillageXO is not:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mb-6">
+                <li>A themed rural property</li>
+                <li>A curated heritage backdrop</li>
+                <li>A commercial "village experience center"</li>
+              </ul>
+              <p className="text-foreground/80">
+                It is a functioning agricultural community.
+                Guests enter respectfully.
+              </p>
+              <p className="text-foreground/80 mt-4 font-semibold">
+                What This Means for You
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-foreground/80 mt-2">
+                <li>You may get muddy</li>
+                <li>Adjust to weather</li>
+                <li>Move at village pace</li>
+                <li>Experience simplicity</li>
+              </ul>
+              <p className="text-foreground/80 mt-4">
+                There is no theatrical polish.
+                There is real life.
+                VillageXO does not recreate village life.
+                It joins it.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tagline and Trust Section */}
+      <section className="py-16 sm:py-20 bg-gradient-to-r from-earthy-brown to-deep-earth text-warm-cream">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+              VillageXO — Real Village Life, Led by Local Families
+            </h2>
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-flex flex-wrap justify-center gap-4 mb-8">
+                <span className="px-4 py-2 bg-golden-harvest/20 text-golden-harvest rounded-full text-sm sm:text-base font-medium">
+                  Participate. Not sightseeing.
+                </span>
+                <span className="px-4 py-2 bg-golden-harvest/20 text-golden-harvest rounded-full text-sm sm:text-base font-medium">
+                  Real work. Real homes. Real people.
+                </span>
+                <span className="px-4 py-2 bg-golden-harvest/20 text-golden-harvest rounded-full text-sm sm:text-base font-medium">
+                  Half-day rural participation (5–6 hours)
+                </span>
+              </div>
+              <p className="text-lg sm:text-xl text-warm-cream/90 max-w-3xl mx-auto">
+                Located near Thanjavur, Kumbakonam, and Thiruvarur • Tamil Nadu village setting • Seasonal farming and household cooking • Cultural creation guided by villagers
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-earthy-brown/30 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-earthy-brown/40">
+            <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                  Hosted Directly by Verified Local Families
+                </h3>
+                <p className="text-warm-cream/80">
+                  Every session is conducted by known and verified village host families.
+                  No third-party operators. No staged coordinators.
+                </p>
+              </div>
+              <div className="bg-warm-cream/10 rounded-2xl p-6 border border-warm-cream/20 flex-1">
+                <h4 className="font-bold text-lg mb-3 text-golden-harvest" style={{ fontFamily: 'var(--font-heading)' }}>
+                  Search VillageXO
+                </h4>
+                <p className="text-sm text-warm-cream/80 mb-4">
+                  Plan Your Village Day
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                  <div className="bg-earthy-brown/20 p-3 rounded-lg">
+                    <p className="font-semibold mb-1">Date</p>
+                    <p className="text-warm-cream/70">[Calendar Picker]</p>
+                  </div>
+                  <div className="bg-earthy-brown/20 p-3 rounded-lg">
+                    <p className="font-semibold mb-1">Guests</p>
+                    <p className="text-warm-cream/70">1–7 People</p>
+                  </div>
+                  <div className="bg-earthy-brown/20 p-3 rounded-lg">
+                    <p className="font-semibold mb-1">Location</p>
+                    <p className="text-warm-cream/70">Self / Kumbakonam / Tanjavur</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -34,7 +34,12 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-3">
+              <img 
+                src="/logo.jpeg" 
+                alt="VillageXO Logo" 
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover border-2 border-golden-harvest"
+              />
               <span className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
                 VillageXO
               </span>

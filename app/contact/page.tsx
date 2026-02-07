@@ -12,30 +12,21 @@ import { Badge } from "@/components/ui/badge";
 export default function ContactPage() {
   const contactMethods = [
     {
-      icon: MessageCircle,
-      title: "WhatsApp",
-      value: "+91 [Your Number]",
-      description: "Quickest for booking inquiries",
-      action: "Chat Now",
-      link: "https://wa.me/",
-      color: "bg-green-500",
-    },
-    {
       icon: Mail,
       title: "Email",
-      value: "contact@villagexo.com",
+      value: "vm4854545@gmail.com",
       description: "Detailed queries & partnerships",
       action: "Send Email",
-      link: "mailto:contact@villagexo.com",
+      link: "mailto:vm4854545@gmail.com",
       color: "bg-blue-500",
     },
     {
       icon: Phone,
-      title: "Call",
-      value: "+91 [Your Number]",
+      title: "Phone",
+      value: "+91 9345522396",
       description: "Direct conversation (10 AM - 6 PM)",
       action: "Call Us",
-      link: "tel:+91",
+      link: "tel:+919345522396",
       color: "bg-clay-terracotta",
     },
   ];

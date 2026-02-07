@@ -1,12 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Plane, Train, Car, Navigation, Sparkles } from "lucide-react";
+import { MapPin, Plane, Train, Car, Navigation, Sparkles, Send } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
 export default function LocationPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    guests: '',
+    message: ''
+  });
+
+  const handleEnquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create message for WhatsApp
+    const whatsappMessage = encodeURIComponent(
+      `VillageXO Enquiry:\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Guests: ${formData.guests}\n` +
+      `Message: ${formData.message}`
+    );
+    
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/919345522396?text=${whatsappMessage}`, '_blank');
+    
+    // Also send email
+    const subject = encodeURIComponent(`VillageXO Enquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Guests: ${formData.guests}\n` +
+      `Message: ${formData.message}`
+    );
+    
+    window.open(`mailto:vm4854545@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      guests: '',
+      message: ''
+    });
+    
+    // Show success message
+    alert('Enquiry sent! We will contact you shortly via WhatsApp and email.');
+  };
+
   const travelOptions = [
     {
       icon: Plane,
@@ -77,20 +130,14 @@ export default function LocationPage() {
               transition={{ duration: 0.8 }}
             >
               <div className="absolute inset-0 bg-earthy-brown/5 rounded-[2.5rem] group-hover:bg-earthy-brown/10 transition-colors duration-500" />
-              <img
-                src="https://images.pexels.com/photos/31715055/pexels-photo-31715055.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Aerial view of village farmland"
-                className="rounded-[2.5rem] shadow-2xl relative z-10 w-full aspect-video object-cover group-hover:scale-[1.01] transition-transform duration-700"
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-16 h-16 bg-clay-terracotta/30 rounded-full flex items-center justify-center"
-                >
-                  <div className="w-8 h-8 bg-clay-terracotta rounded-full border-4 border-white shadow-lg" />
-                </motion.div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.344879033285!2d79.45475437492985!3d10.76338678936309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ1JzQ4LjIiTiA3OcKwMjcnMjUuMCJF!5e0!3m2!1sen!2sin!4v1738828800000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                className="rounded-[2.5rem] shadow-2xl relative z-10 w-full aspect-video border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
               <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Badge variant="outline" className="bg-white/50 backdrop-blur-sm px-3 py-1 text-sm border-2">
                   <MapPin className="w-4 h-4 mr-2 text-primary" />
@@ -119,15 +166,15 @@ export default function LocationPage() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center p-3 bg-white/50 rounded-xl">
                     <span className="font-semibold">Kumbakonam</span>
-                    <span className="text-primary font-bold">~ 40 km</span>
+                    <span className="text-primary font-bold">~ 29 km</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-white/50 rounded-xl">
                     <span className="font-semibold">Tanjavur</span>
-                    <span className="text-primary font-bold">~ 60 km</span>
+                    <span className="text-primary font-bold">~ 40 km</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-white/50 rounded-xl">
                     <span className="font-semibold">Trichy</span>
-                    <span className="text-primary font-bold">~ 110 km</span>
+                    <span className="text-primary font-bold">~ 95 km</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-white/50 rounded-xl">
                     <span className="font-semibold">Chennai</span>
@@ -188,6 +235,124 @@ export default function LocationPage() {
           </div>
         </div>
       </section>
+
+      {/* Enquiry Form */}
+      <section className="py-16 sm:py-24 bg-background">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-earthy-brown mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+              Plan Your Visit
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Have questions about reaching VillageXO? Send us an enquiry and we'll get back to you soon.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Card className="border-2 shadow-xl rounded-3xl overflow-hidden">
+              <CardHeader className="bg-accent/5 p-6 sm:p-8">
+                <CardTitle className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+                  Send an Enquiry
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <form onSubmit={handleEnquirySubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="font-semibold">Full Name</Label>
+                    <Input 
+                      id="name" 
+                      name="name"
+                      placeholder="John Doe" 
+                      className="h-12 border-2 rounded-xl focus:ring-primary" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="font-semibold">Email Address</Label>
+                    <Input 
+                      id="email" 
+                      name="email"
+                      type="email" 
+                      placeholder="john@example.com" 
+                      className="h-12 border-2 rounded-xl focus:ring-primary" 
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="font-semibold">Phone / WhatsApp</Label>
+                    <Input 
+                      id="phone" 
+                      name="phone"
+                      placeholder="+1..." 
+                      className="h-12 border-2 rounded-xl focus:ring-primary" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="guests" className="font-semibold">Number of Guests</Label>
+                    <select 
+                      id="guests" 
+                      name="guests"
+                      className="w-full h-12 border-2 rounded-xl focus:ring-primary bg-background px-3 py-2"
+                      value={formData.guests}
+                      onChange={(e) => setFormData({...formData, guests: e.target.value})}
+                      required 
+                    >
+                      <option value="">Select number</option>
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                      <option value="5">5 Guests</option>
+                      <option value="6">6 Guests</option>
+                      <option value="7">7 Guests</option>
+                    </select>
+                  </div>
+                  <div className="md:col-span-2 space-y-2">
+                    <Label htmlFor="message" className="font-semibold">Your Message / Dates Interested</Label>
+                    <Textarea 
+                      id="message" 
+                      name="message"
+                      placeholder="Tell us when you're planning to visit and any special requirements..." 
+                      className="min-h-[150px] border-2 rounded-2xl focus:ring-primary py-4" 
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <Button 
+                      type="submit"
+                      className="w-full h-16 text-xl font-bold bg-clay-terracotta hover:bg-clay-terracotta/90 text-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                    >
+                      <Send className="w-6 h-6 mr-3" />
+                      Send Enquiry
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
     </main>
   );
 }
