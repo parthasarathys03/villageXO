@@ -14,10 +14,10 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      value: "vm4854545@gmail.com",
+      value: "villagexo50@gmail.com",
       description: "Detailed queries & partnerships",
       action: "Send Email",
-      link: "mailto:vm4854545@gmail.com",
+      link: "mailto:villagexo50@gmail.com",
       color: "bg-blue-500",
     },
     {
@@ -115,8 +115,8 @@ export default function ContactPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm opacity-90 leading-relaxed mb-4">
-                      Olimathi Village, near Thiruvarur,<br />
-                      Tamil Nadu, India
+                      8, Kothamagalam Main Road, Needamagalam,<br />
+                      Thiruvarur-614404, Tamil Nadu
                     </p>
                     <p className="text-xs text-golden-harvest italic">
                       *Exact GPS coordinates shared after booking confirmation for privacy.

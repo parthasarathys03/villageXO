@@ -129,7 +129,7 @@ export default function FAQPage() {
       questions: [
         {
           q: "Where exactly is VillageXO?",
-          a: "Olimathi Village, near Thiruvarur, Tamil Nadu. About 1 hour from Tanjavur, 1-1.15 hours from Kumbakonam. Exact GPS shared after booking confirmation."
+          a: "8, Kothamagalam Main Road, Needamagalam, Thiruvarur-614404, Tamil Nadu. About 1 hour from Tanjavur, 1-1.15 hours from Kumbakonam. Exact GPS shared after booking confirmation."
         },
         {
           q: "How do I get there?",

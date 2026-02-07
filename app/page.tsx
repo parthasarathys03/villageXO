@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Wheat, Zap, CookingPot, Palette, ArrowRight, Star, Sparkles, Heart, Bike } from "lucide-react";
+import { Wheat, CookingPot, Palette, ArrowRight, Star, Sparkles, Heart, Bike } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +25,15 @@ type ExperienceCard = {
   imageAlt: string;
 };
 
+// Custom Cow Icon Component
+const CowIcon = ({ className }: { className?: string }) => (
+  <img 
+    src="/cow-icon.png" 
+    alt="Cow Icon" 
+    className={className}
+  />
+);
+
 export default function Home() {
   const experienceCards: ExperienceCard[] = [
     {
@@ -37,7 +46,7 @@ export default function Home() {
       imageAlt: "Farmer planting rice in lush green field",
     },
     {
-      icon: Zap,
+      icon: CowIcon,
       id: "cattle",
       title: "Cattle Work",
       description: "Feed cows and calves, clean cattle spaces, learn traditional care as family members.",
@@ -212,7 +221,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What You Experience - Attractive Cards */}
+      {/* What You Experience - Carousel */}
       <section className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-warm-cream via-background to-warm-cream/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -242,101 +251,80 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Experience Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {experienceCards.map((card, index) => {
-              const IconComponent = card.icon;
-              return (
-                <motion.div
-                  key={card.id}
-                  className="group"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                >
-                  <Link href={`/experience#${card.id}`} className="block h-full">
-                    <div className="experience-card relative h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-border/50 transition-all duration-500 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2">
-                      {/* Image Section - 50% */}
-                      <div className="relative h-48 sm:h-56 overflow-hidden">
-                        <motion.img
-                          src={card.image}
-                          alt={card.imageAlt}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                        
-                        {/* Floating Icon */}
-                        <motion.div
-                          className="absolute top-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-sm shadow-lg"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <IconComponent className="h-6 w-6 text-primary" />
-                        </motion.div>
-                        
-                        {/* Seasonal Badge */}
-                        {card.seasonal && (
-                          <motion.div
-                            className="absolute top-4 right-4"
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                          >
-                            <Badge className="bg-golden-harvest text-deep-earth font-semibold shadow-lg">
-                              Seasonal
-                            </Badge>
-                          </motion.div>
-                        )}
-                        
-                        {/* Title Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                            {card.title}
-                          </h3>
-                        </div>
-                      </div>
-                      
-                      {/* Content Section - 30% */}
-                      <div className="p-5 sm:p-6">
-                        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed line-clamp-3">
-                          {card.description}
-                        </p>
-                      </div>
-                      
-                      {/* Learn More Button - 10% */}
-                      <div className="px-5 sm:px-6 pb-5 sm:pb-6">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-semibold text-primary group-hover:text-clay-terracotta transition-colors duration-300 flex items-center">
-                            Learn More
-                            <motion.span
-                              className="ml-2 inline-block"
-                              initial={{ x: 0 }}
-                              whileHover={{ x: 5 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                            </motion.span>
-                          </span>
+          {/* Experience Cards Carousel */}
+          <Carousel
+            opts={{ loop: true, align: "start" }}
+            plugins={[Autoplay({ delay: 3000 })]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {experienceCards.map((card, index) => {
+                const IconComponent = card.icon;
+                return (
+                  <CarouselItem key={card.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                    <Link href={`/experience#${card.id}`} className="block h-full">
+                      <div className="experience-card relative h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-border/50 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+                        {/* Image Section - 50% */}
+                        <div className="relative h-48 sm:h-56 overflow-hidden">
+                          <img
+                            src={card.image}
+                            alt={card.imageAlt}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60" />
                           
-                          {/* Decorative Element */}
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                            <div className="w-2 h-2 rounded-full bg-primary group-hover:scale-150 transition-transform duration-300" />
+                          {/* Floating Icon */}
+                          <div className="absolute top-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-sm shadow-lg">
+                            <IconComponent className="h-6 w-6 text-primary" />
+                          </div>
+                          
+                          {/* Seasonal Badge */}
+                          {card.seasonal && (
+                            <div className="absolute top-4 right-4">
+                              <Badge className="bg-golden-harvest text-deep-earth font-semibold shadow-lg">
+                                Seasonal
+                              </Badge>
+                            </div>
+                          )}
+                          
+                          {/* Title Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                              {card.title}
+                            </h3>
+                          </div>
+                        </div>
+                        
+                        {/* Content Section - 30% */}
+                        <div className="p-5 sm:p-6">
+                          <p className="text-sm sm:text-base text-foreground/80 leading-relaxed line-clamp-3">
+                            {card.description}
+                          </p>
+                        </div>
+                        
+                        {/* Learn More Button - 10% */}
+                        <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-semibold text-primary hover:text-clay-terracotta transition-colors duration-200 flex items-center">
+                              Learn More
+                              <span className="ml-2 inline-block">
+                                <ArrowRight className="h-4 w-4 transition-transform duration-200 hover:translate-x-1" />
+                              </span>
+                            </span>
+                            
+                            {/* Decorative Element */}
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <div className="w-2 h-2 rounded-full bg-primary" />
+                            </div>
                           </div>
                         </div>
                       </div>
-                      
-                      {/* Hover Glow Effect */}
-                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                        <div className="absolute inset-0 rounded-2xl ring-2 ring-primary/20 ring-inset" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+                    </Link>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
 
           {/* View All Experiences Button */}
           <motion.div

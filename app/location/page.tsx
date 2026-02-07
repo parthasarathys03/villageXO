@@ -45,7 +45,7 @@ export default function LocationPage() {
       `Message: ${formData.message}`
     );
     
-    window.open(`mailto:vm4854545@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`mailto:villagexo50@gmail.com?subject=${subject}&body=${body}`, '_blank');
     
     // Reset form
     setFormData({
@@ -141,7 +141,7 @@ export default function LocationPage() {
               <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Badge variant="outline" className="bg-white/50 backdrop-blur-sm px-3 py-1 text-sm border-2">
                   <MapPin className="w-4 h-4 mr-2 text-primary" />
-                  Olimathi Village, Thiruvarur
+                  8, Kothamagalam Main Road, Needamagalam, Thiruvarur-614404
                 </Badge>
                 <Badge variant="outline" className="bg-white/50 backdrop-blur-sm px-3 py-1 text-sm border-2">
                   <Sparkles className="w-4 h-4 mr-2 text-golden-harvest" />

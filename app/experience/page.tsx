@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Wheat, Zap, CookingPot, Palette, Coffee, Bike, Footprints, MapPinned } from "lucide-react";
+import { Wheat, CookingPot, Palette, Coffee, Bike, Footprints, MapPinned } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -42,16 +42,103 @@ export default function ExperiencePage() {
       </motion.section>
 
       {/* Village Mobility Experience */}
-      <section id="mobility" className="py-12 sm:py-16 lg:py-20 bg-accent/5">
+      <section id="mobility" className="py-12 sm:py-16 lg:py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             <motion.div
-              className="order-2 lg:order-1"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <motion.div
+                  className="p-3 sm:p-4 rounded-2xl bg-primary/20"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Bike className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
+                </motion.div>
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+                    Village Mobility Experience
+                  </h2>
+                  <Badge variant="outline" className="mt-2">Season-Dependent</Badge>
+                </div>
+              </div>
+              
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-foreground/80 leading-relaxed">
+                <p className="font-semibold text-foreground">
+                  Move the Village Way
+                </p>
+                <p>
+                  Experience village life through walking and cycling. No tours, just authentic village rhythm.
+                </p>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                  How You Move
+                </h3>
+                <ul className="list-disc list-inside space-y-2 pl-2">
+                  <li>Walk village paths</li>
+                  <li>Cycle through fields</li>
+                  <li>Pause naturally</li>
+                </ul>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                  What You See
+                </h3>
+                <p>Village temples, ponds, rivers, ancient trees, and daily life unfolding naturally.</p>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                  Local Storytelling
+                </h3>
+                <p>Hosts share village customs, beliefs, and personal experiences casually.</p>
+                
+                <Card className="mt-4 sm:mt-6 border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base sm:text-lg">Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-xs sm:text-sm space-y-2">
+                    <p><strong>Villages were built for:</strong></p>
+                    <ul className="list-disc list-inside space-y-1 pl-2">
+                      <li>Walking distances</li>
+                      <li>Human connection</li>
+                      <li>Low stress living</li>
+                    </ul>
+                    <p className="mt-2"><strong>This approach:</strong></p>
+                    <ul className="list-disc list-inside space-y-1 pl-2">
+                      <li>Reduces mental noise</li>
+                      <li>Encourages observation</li>
+                      <li>Builds awareness</li>
+                    </ul>
+                    <p className="font-semibold text-foreground mt-3 text-sm">
+                      Guests find this deeply grounding.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="mt-4 sm:mt-6 border-primary/30 bg-primary/5">
+                  <CardContent className="pt-4 sm:pt-6">
+                    <p className="text-xs sm:text-sm text-muted-foreground italic">
+                      <strong>Note:</strong> Weather-dependent. Bring comfortable walking shoes.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className="grid grid-cols-1 gap-4"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <img
+                src="https://images.pexels.com/photos/258385/pexels-photo-258385.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Cyclist riding through peaceful village road"
+                className="rounded-2xl shadow-2xl w-full aspect-[4/3] object-cover hover-scale"
+              />
               <div className="grid grid-cols-2 gap-4">
                 <img
                   src="https://images.pexels.com/photos/160209/village-houses-travel-architecture-160209.jpeg?auto=compress&cs=tinysrgb&w=400"
@@ -63,113 +150,6 @@ export default function ExperiencePage() {
                   alt="Village path with cyclists and pedestrians"
                   className="rounded-xl shadow-lg w-full aspect-square object-cover hover-scale"
                 />
-              </div>
-              <img
-                src="https://images.pexels.com/photos/258385/pexels-photo-258385.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Cyclist riding through peaceful village road"
-                className="mt-4 rounded-2xl shadow-2xl w-full aspect-[4/3] object-cover hover-scale"
-              />
-            </motion.div>
-            
-            <motion.div
-              className="order-1 lg:order-2"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <motion.div
-                  className="p-3 sm:p-4 rounded-2xl bg-secondary/20"
-                  whileHover={{ scale: 1.1, rotate: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Bike className="h-8 w-8 sm:h-10 sm:w-10 text-secondary" />
-                </motion.div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
-                  Village Mobility Experience
-                </h2>
-              </div>
-              
-              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-foreground/80 leading-relaxed">
-                <p className="font-semibold text-foreground text-base sm:text-lg">
-                  Move the Village Way
-                </p>
-                <p>
-                  At VillageXO, movement is slow — and intentional.
-                  There are no buses, no rushed sightseeing, no loud explanations.
-                  Guests explore the village the way villagers actually move: by walking or cycling.
-                  This is not a tour. It is sharing the village rhythm.
-                </p>
-                
-                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
-                  🛤 How You Move
-                </h3>
-                <ul className="list-disc list-inside space-y-2 pl-2">
-                  <li>Walking through narrow village paths</li>
-                  <li>Cycling along fields and water bodies</li>
-                  <li>Pausing naturally — not on a schedule</li>
-                </ul>
-                <p>
-                  Movement is relaxed and flexible.
-                  Guests go at their own pace.
-                </p>
-                
-                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
-                  📍 What You Experience Along the Way
-                </h3>
-                <p>You may pass through:</p>
-                <ul className="list-disc list-inside space-y-2 pl-2">
-                  <li>Village temple spaces</li>
-                  <li>Community ponds and water tanks</li>
-                  <li>Rivers or canals (seasonal)</li>
-                  <li>Ancient banyan trees</li>
-                  <li>Daily village activity spots</li>
-                </ul>
-                <p>
-                  Nothing is forced.
-                  Stops happen where life is happening.
-                </p>
-                
-                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
-                  🗣 Storytelling, Not Lectures
-                </h3>
-                <p>
-                  Stories are shared casually by hosts:
-                </p>
-                <ul className="list-disc list-inside space-y-2 pl-2">
-                  <li>Village customs</li>
-                  <li>Everyday beliefs</li>
-                  <li>Personal life experiences</li>
-                  <li>Changes they've seen over time</li>
-                </ul>
-                <p>
-                  There are no scripted speeches and no textbook history.
-                  You listen, ask, and observe — naturally.
-                </p>
-                
-                <h3 className="text-lg sm:text-xl font-semibold text-earthy-brown mt-4 sm:mt-6" style={{ fontFamily: 'var(--font-heading)' }}>
-                  🧠 Why Slow Mobility Matters
-                </h3>
-                <p>
-                  Traditional villages were built for:
-                </p>
-                <ul className="list-disc list-inside space-y-2 pl-2">
-                  <li>Walking distances</li>
-                  <li>Human connection</li>
-                  <li>Low stress movement</li>
-                </ul>
-                <p>
-                  This way of moving:
-                </p>
-                <ul className="list-disc list-inside space-y-2 pl-2">
-                  <li>Reduces mental noise</li>
-                  <li>Encourages observation</li>
-                  <li>Builds calm awareness</li>
-                </ul>
-                <p>
-                  Many guests say this walk or ride feels deeply grounding.
-                </p>
               </div>
             </motion.div>
           </div>
@@ -307,7 +287,7 @@ export default function ExperiencePage() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Zap className="h-8 w-8 sm:h-10 sm:w-10 text-secondary" />
+                  <CowIcon className="h-8 w-8 sm:h-10 sm:w-10 text-secondary" />
                 </motion.div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
                   Cattle Experience
@@ -427,7 +407,7 @@ export default function ExperiencePage() {
                   className="rounded-xl shadow-lg w-full aspect-square object-cover hover-scale"
                 />
                 <img
-                  src="https://pixabay.com/get/g9c201343a062860634acbd70d4d2ace431b1ebc2d2be5b0b4ec3db8824c72dbd8706dd5a68707aca228e22832b927b44.jpg"
+                  src="https://pixabay.com/get/g9c201343a062860634acbd70d4d2ace431b1ebc2d2be5b0b4ec3555682a4d7de8abfcc78930e940611562b3f324cd37d.jpg"
                   alt="Traditional banana leaf meal"
                   className="rounded-xl shadow-lg w-full aspect-square object-cover hover-scale"
                 />
@@ -583,3 +563,12 @@ export default function ExperiencePage() {
     </main>
   );
 }
+
+// Custom Cow Icon Component
+const CowIcon = ({ className }: { className?: string }) => (
+  <img 
+    src="/cow-icon.png" 
+    alt="Cow Icon" 
+    className={className}
+  />
+);

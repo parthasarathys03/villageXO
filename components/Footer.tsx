@@ -59,16 +59,29 @@ export function Footer() {
           </motion.div>
           
           <div className="flex space-x-4">
-            {[Instagram, Facebook, Youtube].map((Icon, i) => (
-              <motion.a
-                key={i}
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-clay-terracotta hover:text-white transition-all duration-300"
-                whileHover={{ scale: 1.1, rotate: 10 }}
-              >
-                <Icon className="w-5 h-5" />
-              </motion.a>
-            ))}
+            <motion.a
+              href="https://www.instagram.com/villagexo_?utm_source=qr&igsh=bDRxcTJ5eWk2MHls"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-clay-terracotta hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+            >
+              <Instagram className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="#"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-clay-terracotta hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+            >
+              <Facebook className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="#"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-clay-terracotta hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+            >
+              <Youtube className="w-5 h-5" />
+            </motion.a>
           </div>
         </div>
 
@@ -149,13 +162,14 @@ export function Footer() {
 
         {/* Contact Info & Location */}
         <motion.div
-          className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-8"
+          className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start gap-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full md:w-auto">
+          {/* Left: Phone and Email */}
+          <div className="flex flex-col gap-2 w-full md:w-auto">
             <a 
               href="tel:+919345522396" 
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
@@ -166,32 +180,43 @@ export function Footer() {
               <span className="text-sm sm:text-base">+91 9345522396</span>
             </a>
             <a 
-              href="mailto:vm4854545@gmail.com" 
+              href="mailto:villagexo50@gmail.com" 
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
                 <Mail className="w-5 h-5 text-golden-harvest" />
               </div>
-              <span className="text-sm sm:text-base">vm4854545@gmail.com</span>
+              <span className="text-sm sm:text-base">villagexo50@gmail.com</span>
             </a>
+          </div>
+
+          {/* Center: Address */}
+          <div className="flex flex-col items-center text-center flex-1">
             <a 
-              href="https://www.google.com/maps/place/10%C2%B045'48.2%22N+79%C2%B027'25.0%22E" 
+              href="https://maps.app.goo.gl/jDg8UJDQ87vcstdG7?g_st=aw" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity justify-center"
             >
               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
                 <MapPin className="w-5 h-5 text-golden-harvest" />
               </div>
-              <span className="text-sm sm:text-base">Olimathi Village, Tamil Nadu</span>
+              <div className="text-left">
+                <div className="text-sm sm:text-base">8, Kothamagalam Main Road,</div>
+                <div className="text-sm sm:text-base">Needamagalam, Thiruvarur-614404</div>
+              </div>
             </a>
           </div>
 
-          <div className="text-center w-full md:w-auto">
-            <p className="text-sm opacity-50 mb-2">
-              © {new Date().getFullYear()} VillageXO. All rights reserved.
+          {/* Right: Copyright and Tagline */}
+          <div className="flex flex-col items-end text-right w-full md:w-auto">
+            <p className="text-sm opacity-50 mb-1">
+              © {new Date().getFullYear()} VillageXO.
             </p>
-            <div className="flex items-center justify-center gap-2 text-xs opacity-40">
+            <p className="text-sm opacity-50 mb-2">
+              All rights reserved.
+            </p>
+            <div className="flex items-center gap-2 text-xs opacity-40">
               <Sparkles className="w-3 h-3" />
               <span>Authentic Tamil Culture Preservation</span>
             </div>
