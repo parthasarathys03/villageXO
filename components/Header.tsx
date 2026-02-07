@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
@@ -11,39 +12,65 @@ export function Header() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Experience", href: "/experience" },
-    { name: "Pricing & Booking", href: "/pricing" },
+    { name: "Pricing", href: "/pricing" },
     { name: "Location", href: "/location" },
-    { name: "Facilities", href: "/facilities" },
     { name: "FAQ", href: "/faq" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-cream/95 backdrop-blur-sm border-b border-border">
+    <motion.header
+      className="sticky top-0 z-50 bg-warm-cream/98 backdrop-blur-md border-b-2 border-golden-harvest/30 shadow-sm"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 sm:h-18 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <motion.div
+            className="flex items-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
             <Link href="/" className="flex items-center space-x-2">
-              <span className="heading-md text-earthy-brown">VillageXO</span>
+              <span className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+                VillageXO
+              </span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-6">
-            {navigation.map((item) => (
-              <Link
+          <div className="hidden lg:flex lg:items-center lg:space-x-6 xl:space-x-8">
+            {navigation.map((item, index) => (
+              <motion.div
                 key={item.name}
-                href={item.href}
-                className="body-sm text-foreground hover:text-primary transition-colors"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="text-sm xl:text-base font-medium text-foreground hover:text-primary transition-all duration-300 relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                </Link>
+              </motion.div>
             ))}
-            <Button asChild variant="default">
-              <Link href="/pricing">Book Now</Link>
-            </Button>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+            >
+              <Button asChild className="bg-clay-terracotta hover:bg-clay-terracotta/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <Link href="/pricing">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Book Now
+                </Link>
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile menu button */}
@@ -53,35 +80,59 @@ export function Header() {
               size="icon"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
+              className="hover:bg-primary/10"
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-primary" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-primary" />
               )}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden py-4 space-y-2 border-t border-border mt-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block py-2 body-base text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              className="lg:hidden py-4 space-y-3 border-t-2 border-golden-harvest/30 mt-2"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {navigation.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="block py-2.5 px-4 text-base font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
               >
-                {item.name}
-              </Link>
-            ))}
-            <Button asChild variant="default" className="w-full">
-              <Link href="/pricing">Book Now</Link>
-            </Button>
-          </div>
-        )}
+                <Button asChild className="w-full bg-clay-terracotta hover:bg-clay-terracotta/90 text-white shadow-lg py-6 text-base" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/pricing">
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Book Now
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 }
