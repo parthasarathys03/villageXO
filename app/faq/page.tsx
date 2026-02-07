@@ -1,10 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Mail, MessageCircle } from "lucide-react";
 
 export default function FAQPage() {
   const faqSections = [
     {
       category: "About the Experience",
+      icon: "🌾",
       questions: [
         {
           q: "What exactly is VillageXO?",
@@ -12,28 +18,29 @@ export default function FAQPage() {
         },
         {
           q: "How is this different from other village tours?",
-          a: "Most village tours show you activities as performances. At VillageXO, you do the actual work. Farming tasks are real and seasonal, not staged. Villagers are your teachers and hosts, not performers. You eat what they eat, work how they work."
+          a: "Most village tours show you activities as performances. At VillageXO, you do the actual work. Farming tasks are real and seasonal, not staged. Villagers are your teachers and hosts, not performers."
         },
         {
           q: "What language is spoken? I don't speak Tamil.",
-          a: "Tamil is the primary language in the village. Our coordination team speaks English. During activities, guidance is given through demonstration and simple communication. Language becomes secondary when you're working side by side."
+          a: "Tamil is the primary language in the village. Our coordination team speaks English. During activities, guidance is given through demonstration and simple communication."
         },
         {
           q: "Can I come alone or do I need a group?",
-          a: "Both welcome. We accept solo travelers and groups up to 7 people maximum. Solo travelers often find the experience deeply personal."
+          a: "Both welcome. We accept solo travelers and groups up to 7 people maximum."
         },
         {
           q: "Is this suitable for children?",
-          a: "Yes, if they're comfortable with physical activity and basic facilities. Children must be supervised by parents. Farm work is real, so assess your child's ability to participate safely. Minimum recommended age is 8 years."
+          a: "Yes, if they're comfortable with physical activity and basic facilities. Children must be supervised by parents. Minimum recommended age is 8 years."
         }
       ]
     },
     {
       category: "Activities & Participation",
+      icon: "👨‍🌾",
       questions: [
         {
           q: "What farming activities will I do?",
-          a: "It depends entirely on the season. Activities might include: transplanting rice saplings, sowing seeds, understanding soil and water flow, learning traditional methods. We cannot guarantee specific tasks — you participate in what's actually happening on the farm that day."
+          a: "It depends entirely on the season. Activities might include: transplanting rice saplings, sowing seeds, understanding soil and water flow. We cannot guarantee specific tasks — you participate in what's actually happening that day."
         },
         {
           q: "What if I can't do physically demanding work?",
@@ -51,27 +58,29 @@ export default function FAQPage() {
     },
     {
       category: "Booking & Pricing",
+      icon: "💰",
       questions: [
         {
           q: "How much does it cost?",
-          a: "Half-day immersion (5-6 hours): Indian guests ₹2,500 per person, International guests ₹3,500 per person. Transport from Kumbakonam: ₹4,000-5,500 depending on group size. Transport from Tanjavur: ₹4,500-6,000. Transport is per vehicle, not per person."
+          a: "Half-day immersion (5-6 hours): Indian guests ₹2,500 per person, International guests ₹3,500 per person. Transport from Kumbakonam: ₹4,000-5,500. Transport from Tanjavur: ₹4,500-6,000."
         },
         {
           q: "What's included in the price?",
-          a: "Farm participation, cattle interaction, traditional cooking and village lunch on banana leaf, cultural micro-workshop, English-speaking coordinator/guide throughout, safety briefing, drinking water, shaded rest areas, and Certificate of Participation (if you complete the full experience)."
+          a: "Farm participation, cattle interaction, traditional cooking and village lunch on banana leaf, cultural micro-workshop, English-speaking coordinator, safety briefing, drinking water, shaded rest areas, and Certificate of Participation."
         },
         {
           q: "Can I get a refund if I cancel?",
-          a: "7+ days before: 100% refund. 2-6 days before: 75% refund. Less than 48 hours: No refund (we've already coordinated with farmers and families). Weather cancellations by us: Full refund or free rescheduling."
+          a: "7+ days before: 100% refund. 2-6 days before: 75% refund. Less than 48 hours: No refund. Weather cancellations by us: Full refund or free rescheduling."
         }
       ]
     },
     {
       category: "Facilities & Comfort",
+      icon: "🏠",
       questions: [
         {
           q: "What are the toilet facilities like?",
-          a: "Traditional Indian-style squat toilets with water-based cleaning. Clean and maintained by host households, but basic — not hotel standard. If you have knee or mobility issues with squat toilets, please inform us to discuss suitability."
+          a: "Traditional Indian-style squat toilets with water-based cleaning. Clean and maintained by host households, but basic — not hotel standard. If you have mobility issues, please inform us."
         },
         {
           q: "Is there a shower?",
@@ -79,7 +88,7 @@ export default function FAQPage() {
         },
         {
           q: "Is the food safe to eat?",
-          a: "Yes. Food is freshly prepared in the host family's home kitchen using clean, filtered or boiled water. It's traditional household cooking, not commercial sanitization, but maintained with care."
+          a: "Yes. Food is freshly prepared in the host family's home kitchen using clean, filtered or boiled water. It's traditional household cooking, maintained with care."
         },
         {
           q: "I have food allergies. Can you accommodate?",
@@ -93,6 +102,7 @@ export default function FAQPage() {
     },
     {
       category: "Safety & Health",
+      icon: "🏥",
       questions: [
         {
           q: "Is it safe?",
@@ -100,7 +110,7 @@ export default function FAQPage() {
         },
         {
           q: "What if I have a medical emergency?",
-          a: "Basic first-aid is available immediately. The nearest hospital is in Thiruvarur, 20-30 minutes away. We have vehicle access and pre-identified routes. However, VillageXO is a rural space, not a medical facility."
+          a: "Basic first-aid is available immediately. The nearest hospital is in Thiruvarur, 20-30 minutes away. We have vehicle access and pre-identified routes."
         },
         {
           q: "Are there mosquitoes or insects?",
@@ -108,12 +118,13 @@ export default function FAQPage() {
         },
         {
           q: "Is it too hot for foreigners not used to Indian heat?",
-          a: "Tamil Nadu gets very hot, especially March-June (35-40°C). We provide water, shade breaks, and flexible pacing. If you're heat-sensitive, consider visiting November-February."
+          a: "Tamil Nadu gets very hot, especially March-June (35-40°C). We provide water, shade breaks, and flexible pacing. Best months: November-February."
         }
       ]
     },
     {
       category: "Location & Transport",
+      icon: "📍",
       questions: [
         {
           q: "Where exactly is VillageXO?",
@@ -131,6 +142,7 @@ export default function FAQPage() {
     },
     {
       category: "Cultural & Behavioral",
+      icon: "📷",
       questions: [
         {
           q: "Can I take photos?",
@@ -138,82 +150,143 @@ export default function FAQPage() {
         },
         {
           q: "What if I want to give money or gifts to the families?",
-          a: "Your participation and respectful engagement IS the exchange. Tips are not expected or requested. If you want to support, the best way is sharing your experience with others who might value it."
+          a: "Your participation and respectful engagement IS the exchange. Tips are not expected or requested. If you want to support, the best way is sharing your experience with others."
         },
         {
           q: "Is this exploitative of villagers?",
-          a: "No. Villagers are paid hosts and teachers, not attractions. They earn dignified income from their knowledge and expertise. VillageXO exists to preserve and honor village culture by keeping it economically valued, not to commodify it."
+          a: "No. Villagers are paid hosts and teachers, not attractions. They earn dignified income from their knowledge and expertise. VillageXO exists to preserve and honor village culture by keeping it economically valued."
         }
       ]
     }
   ];
 
   return (
-    <main>
+    <main className="min-h-screen">
       {/* Hero */}
-      <section className="bg-earthy-brown text-warm-cream py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="heading-xl mb-6">Frequently Asked Questions</h1>
-          <p className="body-lg opacity-90">
-            Everything you need to know about the VillageXO experience
-          </p>
+      <motion.section
+        className="bg-gradient-to-r from-earthy-brown via-clay-terracotta to-earthy-brown text-warm-cream py-16 sm:py-20 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')]"></div>
         </div>
-      </section>
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            Frequently Asked Questions
+          </motion.h1>
+          <motion.p
+            className="text-base sm:text-lg opacity-95 leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.95 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Everything you need to know about the VillageXO experience
+          </motion.p>
+        </div>
+      </motion.section>
 
       {/* FAQ Sections */}
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="py-12 sm:py-16 lg:py-20 bg-background">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
           {faqSections.map((section, sectionIndex) => (
-            <div key={sectionIndex}>
-              <h2 className="heading-md text-earthy-brown mb-6">{section.category}</h2>
-              <Card className="border-2">
+            <motion.div
+              key={sectionIndex}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+            >
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <span className="text-3xl sm:text-4xl">{section.icon}</span>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {section.category}
+                </h2>
+              </div>
+              <Card className="border-2 shadow-lg hover-lift">
                 <Accordion type="single" collapsible className="w-full">
                   {section.questions.map((item, index) => (
                     <AccordionItem
                       key={index}
                       value={`item-${sectionIndex}-${index}`}
-                      className="px-6"
+                      className="px-4 sm:px-6 border-b last:border-b-0"
                     >
-                      <AccordionTrigger className="text-left body-base font-semibold hover:no-underline">
+                      <AccordionTrigger className="text-left text-sm sm:text-base font-semibold hover:text-primary py-4 sm:py-5">
                         {item.q}
                       </AccordionTrigger>
-                      <AccordionContent className="body-base text-foreground/80">
+                      <AccordionContent className="text-xs sm:text-sm lg:text-base text-foreground/80 pb-4 leading-relaxed">
                         {item.a}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Still Have Questions CTA */}
-      <section className="py-20 bg-accent/5">
+      <motion.section
+        className="py-16 sm:py-20 bg-gradient-to-r from-accent/10 to-accent/5"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="heading-md text-earthy-brown mb-4">Still Have Questions?</h2>
-          <p className="body-base text-foreground/80 mb-6">
+          <motion.h2
+            className="text-2xl sm:text-3xl font-bold text-earthy-brown mb-4 sm:mb-6"
+            style={{ fontFamily: 'var(--font-heading)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Still Have Questions?
+          </motion.h2>
+          <motion.p
+            className="text-sm sm:text-base text-foreground/80 mb-6 sm:mb-8 leading-relaxed"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             We're here to help. Reach out via WhatsApp, email, or phone.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <a
               href="https://wa.me/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors body-base font-semibold"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-white rounded-xl hover:bg-secondary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base font-semibold"
             >
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               WhatsApp Us
             </a>
             <a
               href="mailto:contact@villagexo.com"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors body-base font-semibold"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 text-sm sm:text-base font-semibold"
             >
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Email Us
             </a>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
