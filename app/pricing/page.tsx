@@ -222,11 +222,11 @@ export default function PricingPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <Button size="lg" className="w-full text-base sm:text-lg py-6 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                  <Button size="lg" className="w-full text-base sm:text-lg py-7 bg-clay-terracotta hover:bg-clay-terracotta/90 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-xl hover:shadow-2xl">
                     <Calendar className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
                     Check Available Dates
                   </Button>
-                  <p className="text-xs sm:text-sm text-muted-foreground text-center mt-3">
+                  <p className="text-sm text-muted-foreground text-center mt-4 font-medium italic">
                     50% advance required to confirm booking
                   </p>
                 </motion.div>

@@ -92,8 +92,6 @@ export default function Home() {
     },
   ];
 
-
-
   return (
     <main className="overflow-hidden">
       {/* Hero Section with Carousel */}
@@ -168,18 +166,18 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
             >
-              <Button asChild size="lg" className="bg-clay-terracotta hover:bg-clay-terracotta/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <Link href="/pricing">
+              <Button asChild size="xl" className="bg-clay-terracotta hover:bg-clay-terracotta/90 text-white font-bold">
+                <Link href="/pricing" className="flex items-center">
                   See Available Dates
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-warm-cream text-warm-cream hover:bg-warm-cream hover:text-deep-earth transition-all duration-300">
+              <Button asChild size="xl" variant="white" className="font-bold">
                 <Link href="/experience">Learn More</Link>
               </Button>
             </motion.div>
@@ -205,29 +203,28 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
             {valueCards.map((card, index) => {
               const IconComponent = card.icon;
               return (
                 <motion.div
                   key={index}
+                  className="flex"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className={`border-2 hover-lift h-full bg-gradient-to-br ${card.gradient} backdrop-blur-sm`}>
-                    <CardHeader className="pb-3 sm:pb-4">
+                  <Card className={`border-2 hover-lift w-full flex flex-col bg-gradient-to-br ${card.gradient} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl hover:border-primary/30 group`}>
+                    <CardHeader className="pb-3 sm:pb-4 flex-none">
                       <div className="mb-3 sm:mb-4 flex items-center justify-between">
                         <motion.div
-                          className="p-2.5 sm:p-3 rounded-xl bg-primary/20 backdrop-blur-sm"
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.6 }}
+                          className="p-2.5 sm:p-3 rounded-xl bg-primary/20 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
                         >
                           <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                         </motion.div>
                         {card.seasonal && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs border-primary/30 text-primary/80">
                             Seasonal
                           </Badge>
                         )}
@@ -236,8 +233,8 @@ export default function Home() {
                         {card.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-sm sm:text-base leading-relaxed">
+                    <CardContent className="flex-grow">
+                      <CardDescription className="text-sm sm:text-base leading-relaxed text-foreground/80">
                         {card.description}
                       </CardDescription>
                     </CardContent>
@@ -298,7 +295,7 @@ export default function Home() {
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground">— Vijay M, Founder</p>
               </div>
-              <Button asChild variant="outline" className="mt-4 sm:mt-6 border-2 hover-scale">
+              <Button asChild variant="outline" size="lg" className="mt-4 sm:mt-6 font-bold">
                 <Link href="/about">Read Full Story</Link>
               </Button>
             </motion.div>
@@ -368,7 +365,7 @@ export default function Home() {
           </Carousel>
 
           <div className="text-center mt-6 sm:mt-8">
-            <Button asChild variant="outline" className="hover-scale">
+            <Button asChild variant="outline" size="lg" className="font-bold">
               <Link href="/reviews">Read More Reviews</Link>
             </Button>
           </div>
@@ -407,16 +404,16 @@ export default function Home() {
             Half-day immersion. Real participation. Cultural continuity.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-warm-cream shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <Button asChild size="xl" variant="secondary" className="bg-white text-primary hover:bg-warm-cream">
               <Link href="/pricing">Check Available Dates</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300">
+            <Button asChild size="xl" variant="white">
               <Link href="/faq">Read FAQ First</Link>
             </Button>
           </motion.div>

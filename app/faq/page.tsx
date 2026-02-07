@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Mail, MessageCircle } from "lucide-react";
 
 export default function FAQPage() {
@@ -262,28 +263,24 @@ export default function FAQPage() {
             We're here to help. Reach out via WhatsApp, email, or phone.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-white rounded-xl hover:bg-secondary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base font-semibold"
-            >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              WhatsApp Us
-            </a>
-            <a
-              href="mailto:contact@villagexo.com"
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 text-sm sm:text-base font-semibold"
-            >
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Email Us
-            </a>
+            <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white rounded-2xl h-16 px-10 text-lg font-bold shadow-2xl hover:scale-105 transition-all duration-300">
+              <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-6 h-6 mr-3" />
+                WhatsApp Us
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary bg-white hover:bg-primary hover:text-white rounded-2xl h-16 px-10 text-lg font-bold shadow-xl hover:scale-105 transition-all duration-300">
+              <a href="mailto:contact@villagexo.com">
+                <Mail className="w-6 h-6 mr-3" />
+                Email Us
+              </a>
+            </Button>
           </motion.div>
         </div>
       </motion.section>

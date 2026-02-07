@@ -1,169 +1,219 @@
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
+import { motion } from "framer-motion";
+import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 
 export default function ContactPage() {
+  const contactMethods = [
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      value: "+91 [Your Number]",
+      description: "Quickest for booking inquiries",
+      action: "Chat Now",
+      link: "https://wa.me/",
+      color: "bg-green-500",
+    },
+    {
+      icon: Mail,
+      title: "Email",
+      value: "contact@villagexo.com",
+      description: "Detailed queries & partnerships",
+      action: "Send Email",
+      link: "mailto:contact@villagexo.com",
+      color: "bg-blue-500",
+    },
+    {
+      icon: Phone,
+      title: "Call",
+      value: "+91 [Your Number]",
+      description: "Direct conversation (10 AM - 6 PM)",
+      action: "Call Us",
+      link: "tel:+91",
+      color: "bg-clay-terracotta",
+    },
+  ];
+
   return (
-    <main>
+    <main className="overflow-hidden">
       {/* Hero */}
-      <section className="bg-earthy-brown text-warm-cream py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="heading-xl mb-6">Contact Us</h1>
-          <p className="body-lg opacity-90">
-            We're here to answer your questions and help you plan your visit
-          </p>
+      <motion.section
+        className="bg-gradient-to-br from-earthy-brown to-deep-earth text-warm-cream py-16 sm:py-24 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')]"></div>
         </div>
-      </section>
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            Connect With Us
+          </motion.h1>
+          <motion.p
+            className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Have questions? Ready to book? We're here to help you plan your authentic village experience.
+          </motion.p>
+        </div>
+      </motion.section>
 
-      {/* Contact Methods */}
-      <section className="py-20 bg-background">
+      <section className="py-12 sm:py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <Card className="border-2">
-              <CardHeader>
-                <div className="p-3 rounded-lg bg-secondary/10 w-fit mb-4">
-                  <MessageCircle className="h-8 w-8 text-secondary" />
-                </div>
-                <CardTitle className="heading-sm">WhatsApp</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="body-base text-foreground/80">
-                  Fastest way to reach us. Available for international guests too.
-                </p>
-                <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-                    Chat on WhatsApp
-                  </a>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  Works internationally with WiFi
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Contact Methods */}
+            <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+              {contactMethods.map((method, index) => {
+                const Icon = method.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="hover-lift border-2 group">
+                      <CardContent className="p-6">
+                        <div className="flex items-start gap-4">
+                          <div className={`p-3 rounded-2xl ${method.color} text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                            <Icon className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-earthy-brown text-lg">{method.title}</h3>
+                            <p className="text-base font-semibold text-primary mb-1">{method.value}</p>
+                            <p className="text-sm text-muted-foreground mb-4">{method.description}</p>
+                            <Button asChild variant="outline" size="lg" className="w-full mt-2 rounded-2xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white h-14 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02]">
+                              <a href={method.link} target="_blank" rel="noopener noreferrer">{method.action}</a>
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                );
+              })}
 
-            <Card className="border-2">
-              <CardHeader>
-                <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4">
-                  <Mail className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="heading-sm">Email</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="body-base text-foreground/80">
-                  For detailed inquiries and booking confirmations.
-                </p>
-                <Button asChild variant="outline" className="w-full">
-                  <a href="mailto:contact@villagexo.com">
-                    Send an Email
-                  </a>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  contact@villagexo.com
-                </p>
-              </CardContent>
-            </Card>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Card className="bg-gradient-to-br from-earthy-brown to-deep-earth text-white border-none shadow-xl rounded-3xl overflow-hidden">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-golden-harvest" />
+                      Village Location
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm opacity-90 leading-relaxed mb-4">
+                      Olimathi Village, near Thiruvarur,<br />
+                      Tamil Nadu, India
+                    </p>
+                    <p className="text-xs text-golden-harvest italic">
+                      *Exact GPS coordinates shared after booking confirmation for privacy.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
 
-            <Card className="border-2">
-              <CardHeader>
-                <div className="p-3 rounded-lg bg-accent/10 w-fit mb-4">
-                  <Phone className="h-8 w-8 text-accent" />
+            {/* Inquiry Form */}
+            <motion.div
+              className="lg:col-span-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="border-2 shadow-2xl rounded-3xl overflow-hidden">
+                <CardHeader className="bg-accent/5 p-6 sm:p-8">
+                  <CardTitle className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+                    Send an Inquiry
+                  </CardTitle>
+                  <CardDescription className="text-sm sm:text-base">
+                    Fill out the form below and we'll get back to you within 24 hours.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6 sm:p-8">
+                  <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="font-semibold">Full Name</Label>
+                      <Input id="name" placeholder="John Doe" className="h-12 border-2 rounded-xl focus:ring-primary" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="font-semibold">Email Address</Label>
+                      <Input id="email" type="email" placeholder="john@example.com" className="h-12 border-2 rounded-xl focus:ring-primary" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="font-semibold">Phone / WhatsApp</Label>
+                      <Input id="phone" placeholder="+1..." className="h-12 border-2 rounded-xl focus:ring-primary" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="guests" className="font-semibold">Number of Guests</Label>
+                      <Input id="guests" type="number" min="1" max="7" placeholder="2" className="h-12 border-2 rounded-xl focus:ring-primary" />
+                    </div>
+                    <div className="md:col-span-2 space-y-2">
+                      <Label htmlFor="message" className="font-semibold">Your Message / Dates Interested</Label>
+                      <Textarea id="message" placeholder="Tell us when you're planning to visit and any special requirements..." className="min-h-[150px] border-2 rounded-2xl focus:ring-primary py-4" />
+                    </div>
+                    <div className="md:col-span-2">
+                      <Button className="w-full h-16 text-xl font-bold bg-clay-terracotta hover:bg-clay-terracotta/90 text-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+                        <Send className="w-6 h-6 mr-3" />
+                        Send Inquiry
+                      </Button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+
+              {/* Booking Checklist */}
+              <motion.div
+                className="mt-8 sm:mt-12"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <h3 className="text-xl font-bold text-earthy-brown mb-6 flex items-center gap-2">
+                  <CheckCircle2 className="w-6 h-6 text-paddy-green" />
+                  Booking Checklist
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "Maximum 7 guests per session",
+                    "50% advance to confirm booking",
+                    "Notify food allergies in advance",
+                    "Comfortable with squat toilets",
+                    "Willing to participate in farm work",
+                    "Respect for village culture & privacy",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 bg-accent/5 rounded-xl border border-accent/10">
+                      <div className="w-2 h-2 rounded-full bg-paddy-green" />
+                      <span className="text-sm sm:text-base font-medium text-foreground/80">{item}</span>
+                    </div>
+                  ))}
                 </div>
-                <CardTitle className="heading-sm">Phone</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="body-base text-foreground/80">
-                  Direct call for urgent matters or booking support.
-                </p>
-                <Button asChild variant="outline" className="w-full">
-                  <a href="tel:+91">Call Us</a>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  International charges may apply
-                </p>
-              </CardContent>
-            </Card>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Before You Contact */}
-      <section className="py-20 bg-accent/5">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="heading-lg text-earthy-brown mb-8 text-center">
-            Before You Contact Us
-          </h2>
-          <Card className="border-2">
-            <CardHeader>
-              <CardTitle className="heading-sm">Booking Inquiry Checklist</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 body-base">
-              <p>To help us respond quickly, please share:</p>
-              <ul className="list-disc list-inside space-y-2 text-foreground/80">
-                <li>Preferred dates or date range</li>
-                <li>Number of guests</li>
-                <li>Guest nationality (Indian/International)</li>
-                <li>Transport preference (Self-arrival/Kumbakonam/Tanjavur)</li>
-                <li>Any dietary restrictions or allergies</li>
-                <li>Any physical limitations or health concerns</li>
-                <li>What draws you to this experience?</li>
-              </ul>
-              <p className="text-sm text-muted-foreground italic mt-4">
-                This helps us ensure VillageXO is the right fit for you and prepare appropriately.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Location */}
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <MapPin className="h-8 w-8 text-primary" />
-            <h2 className="heading-lg text-earthy-brown">Location</h2>
-          </div>
-          <Card className="border-2">
-            <CardContent className="pt-6">
-              <div className="space-y-4 text-center body-base">
-                <p className="font-semibold text-foreground text-lg">
-                  Olimathi Village
-                </p>
-                <p className="text-foreground/80">
-                  Near Thiruvarur, Tamil Nadu, India
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-sm">
-                  <div>
-                    <p className="font-semibold text-foreground">From Thiruvarur</p>
-                    <p className="text-muted-foreground">20-30 minutes</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">From Tanjavur</p>
-                    <p className="text-muted-foreground">1 hour</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">From Kumbakonam</p>
-                    <p className="text-muted-foreground">1-1.15 hours</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground italic mt-6">
-                  Exact GPS location shared after booking confirmation
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Response Time */}
-      <section className="py-20 bg-primary text-white">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="heading-md mb-4">We'll Get Back to You</h2>
-          <p className="body-lg opacity-90 mb-6">
-            Most inquiries are answered within 24 hours. For urgent matters, WhatsApp is fastest.
-          </p>
-          <p className="body-base opacity-75">
-            We value honest, clear communication — just like village conversations.
-          </p>
         </div>
       </section>
     </main>

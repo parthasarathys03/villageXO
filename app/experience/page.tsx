@@ -403,13 +403,13 @@ export default function ExperiencePage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div
-              className="p-3 sm:p-4 rounded-2xl bg-accent/20"
+              className="p-3 sm:p-4 rounded-2xl bg-accent/20 shadow-inner"
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
               <Coffee className="h-8 w-8 sm:h-10 sm:w-10 text-accent" />
             </motion.div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-earthy-brown" style={{ fontFamily: 'var(--font-heading)' }}>
               Closing Reflection
             </h2>
           </motion.div>
