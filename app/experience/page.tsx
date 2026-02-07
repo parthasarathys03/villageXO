@@ -135,18 +135,18 @@ export default function ExperiencePage() {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="https://images.pexels.com/photos/258385/pexels-photo-258385.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/Village-Mobility-Experience-1.png"
                 alt="Cyclist riding through peaceful village road"
                 className="rounded-2xl shadow-2xl w-full aspect-[4/3] object-cover hover-scale"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="https://images.pexels.com/photos/160209/village-houses-travel-architecture-160209.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="/Village-Mobility-Experience-2.jpeg"
                   alt="Traditional village pathway with houses"
                   className="rounded-xl shadow-lg w-full aspect-square object-cover hover-scale"
                 />
                 <img
-                  src="https://images.pexels.com/photos/1444229/pexels-photo-1444229.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="/Village-Mobility-Experience-3.jpeg"
                   alt="Village path with cyclists and pedestrians"
                   className="rounded-xl shadow-lg w-full aspect-square object-cover hover-scale"
                 />
